@@ -2,7 +2,7 @@
 // QIDI family added in alpha.6.
 //
 // ORDER IS POPULARITY ORDER (mirrored in `rank`): the wizard and Settings
-// pickers present profiles in array order, StoneLabs rig pinned first. The
+// pickers present profiles in array order, modded-Hi rig pinned first. The
 // ranking is editorial mindshare as of late 2025 (alpha.6 handoff section 3);
 // adjacent ranks are ties, reorder freely. A data-driven signal (repo stars,
 // review counts) can re-sort by `rank` later without touching the pickers.

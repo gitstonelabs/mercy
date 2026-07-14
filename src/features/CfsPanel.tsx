@@ -1,4 +1,4 @@
-// CFS / filament panel (handoff 3.15). The StoneLabs differentiator.
+// CFS / filament panel (handoff 3.15). The Mercy differentiator.
 //
 // Data model (ground truth from the v1 CFS state builder):
 //   Live module state: printer object `creality_cfs`

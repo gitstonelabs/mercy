@@ -120,7 +120,7 @@ export function FirstRunWizard() {
       {phase === 'welcome' && (
         <section style={{ width: 'min(680px, 100%)', textAlign: 'center' }}>
           <h1 style={{ font: "700 28px 'Manrope', system-ui, sans-serif", margin: '0 0 8px' }}>
-            Welcome to StoneLabs Printer UI
+            Welcome to Mercy
           </h1>
           <p style={{ color: 'var(--accent)', font: "700 15px 'Manrope', system-ui, sans-serif", margin: '0 0 20px' }}>
             {EDITABLE_LATER}

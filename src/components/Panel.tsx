@@ -1,6 +1,6 @@
 // Panel: the titled card chrome used by every dashboard card and page section.
 // Matches the approved prototype: bg2 surface, hairline border, 14px radius,
-// uppercase eyebrow title. Styled only with StoneLabs tokens.
+// uppercase eyebrow title. Styled only with Mercy tokens.
 
 import type { ReactNode } from 'react';
 

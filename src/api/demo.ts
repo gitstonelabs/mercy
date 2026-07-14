@@ -38,7 +38,7 @@ interface SimState {
 }
 
 const DEMO_FILES: FileEntry[] = [
-  { path: 'stonelabs_bracket_v3.gcode', modified: now() - 3600, size: 4_400_000, isDir: false },
+  { path: 'mercy_bracket_v3.gcode', modified: now() - 3600, size: 4_400_000, isDir: false },
   { path: 'cfs_hub_cover_x4.gcode', modified: now() - 14_000, size: 10_200_000, isDir: false },
   { path: 'eddy_mount_v8.gcode', modified: now() - 200_000, size: 2_000_000, isDir: false },
   { path: 'calibration_tower_220.gcode', modified: now() - 300_000, size: 2_700_000, isDir: false },
@@ -210,7 +210,7 @@ export class DemoBackend implements BackendService {
     },
   };
 
-  private printingFile: string | null = 'stonelabs_bracket_v3.gcode';
+  private printingFile: string | null = 'mercy_bracket_v3.gcode';
 
   files = {
     list: async (): Promise<FileEntry[]> => DEMO_FILES,
@@ -354,7 +354,7 @@ export class DemoBackend implements BackendService {
       },
       save_variables: {
         variables: {
-          cfs1_slot1_name: 'StoneLabs Cyan',
+          cfs1_slot1_name: 'Mercy Cyan',
           cfs1_slot1_color: '#2bcdf2',
           cfs1_slot2_name: 'Carbon Black',
           cfs1_slot2_color: '#4a4d55',

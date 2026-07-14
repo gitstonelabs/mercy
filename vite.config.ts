@@ -2,7 +2,7 @@ import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { readFileSync } from 'node:fs';
 
-// Vite config for the StoneLabs UI v2 build.
+// Vite config for the Mercy build.
 //
 // base: './' makes the built output path-relative, so the same dist/ folder
 // works whether it is served from a domain root, a Moonraker static_files
@@ -46,7 +46,7 @@ export default defineConfig({
     // Vite 5.4.21+ blocks unknown Host headers by default. The dev server runs
     // on a trusted LAN and gets reached by hostname (http://printer.local:5173,
     // *.local from a kiosk), so allow any host here. The shipped build is
-    // static files behind the stonelabs-ui service, not this dev server.
+    // static files behind the mercy service, not this dev server.
     allowedHosts: true,
     proxy: {
       // REST endpoints Moonraker serves under these prefixes.

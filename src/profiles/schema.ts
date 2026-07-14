@@ -47,7 +47,7 @@ export interface PrinterProfile {
   id: string;                        // 'modded-hi-cfs', 'prusa-mini', ...
   displayName: string;
   vendor: string;
-  // Editorial popularity rank for pickers (1 = most popular; the StoneLabs
+  // Editorial popularity rank for pickers (1 = most popular; the modded-Hi
   // rig is pinned to 1). PROFILES is kept sorted by this; the field exists so
   // a future data-driven ranking can re-sort without re-ordering the file.
   rank: number;

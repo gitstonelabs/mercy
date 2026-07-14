@@ -79,7 +79,7 @@ export function Settings() {
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'stonelabs-ui.json';
+    a.download = 'mercy.json';
     a.click();
     window.setTimeout(() => URL.revokeObjectURL(a.href), 0);
   };
@@ -90,7 +90,7 @@ export function Settings() {
       try {
         const raw = JSON.parse(text) as Record<string, unknown>;
         if (typeof raw !== 'object' || raw === null || typeof raw.profileId !== 'string') {
-          setNote('That does not look like a stonelabs-ui.json export.');
+          setNote('That does not look like a mercy.json export.');
           return;
         }
         // Whitelist and type-check every field, deep-merging objects onto the
@@ -400,7 +400,7 @@ export function Settings() {
               <button className="sl-btn sl-btn--danger" onClick={factoryReset}>Factory reset</button>
             </div>
             <p className="sl-mono" style={{ margin: '9px 0 0', fontSize: 9.5, color: 'var(--txd)', lineHeight: 1.6 }}>
-              exports stonelabs-ui.json: connection, profile, theme, layouts, console, webcam, logo. factory reset clears this install and re-runs the wizard.
+              exports mercy.json: connection, profile, theme, layouts, console, webcam, logo. factory reset clears this install and re-runs the wizard.
             </p>
           </Panel>
         </div>

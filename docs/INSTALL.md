@@ -1,10 +1,10 @@
-# Installing StoneLabs Printer UI v2
+# Installing Mercy
 
 This is a first-draft install guide. It targets a host that already runs Klipper and Moonraker. The UI is a Moonraker client; it does not install or configure Klipper.
 
 ## 1. What this is and what it needs
 
-StoneLabs Printer UI v2 is a static web app (HTML, CSS, JavaScript) built by Vite. You serve the built files from the printer host and open them in a browser, or run them full-screen on an attached touchscreen (kiosk mode). You can do both at once.
+Mercy is a static web app (HTML, CSS, JavaScript) built by Vite. You serve the built files from the printer host and open them in a browser, or run them full-screen on an attached touchscreen (kiosk mode). You can do both at once.
 
 You need:
 
@@ -36,21 +36,21 @@ You have two ways to get the built files onto the host. Building on the host is 
 ### 4a. Build on the host
 
 ```
-git clone <this-repo-url> stonelabs-ui-v2
-cd stonelabs-ui-v2
+git clone <this-repo-url> mercy
+cd mercy
 npm install
 npm run build
 ```
 
-The output lands in `stonelabs-ui-v2/dist/`.
+The output lands in `mercy/dist/`.
 
 ### 4b. Build on a workstation, copy the output
 
 On the workstation:
 
 ```
-git clone <this-repo-url> stonelabs-ui-v2
-cd stonelabs-ui-v2
+git clone <this-repo-url> mercy
+cd mercy
 npm install
 npm run build
 ```
@@ -58,7 +58,7 @@ npm run build
 Copy `dist/` to the host:
 
 ```
-scp -r dist/ pi@<host-ip>:/tmp/stonelabs-dist
+scp -r dist/ pi@<host-ip>:/tmp/mercy-dist
 ```
 
 ### 4c. Serve the files from Moonraker (recommended)
@@ -66,15 +66,15 @@ scp -r dist/ pi@<host-ip>:/tmp/stonelabs-dist
 Serving from Moonraker puts the UI on the same origin as the API, so there is no CORS setup and the WebSocket connects without extra config. Publish the build into a folder Moonraker serves:
 
 ```
-mkdir -p ~/printer_data/www-stonelabs
-cp -r dist/* ~/printer_data/www-stonelabs/          # or from /tmp/stonelabs-dist/*
+mkdir -p ~/printer_data/www-mercy
+cp -r dist/* ~/printer_data/www-mercy/          # or from /tmp/mercy-dist/*
 ```
 
 Add a `static_files` section to `~/printer_data/config/moonraker.conf`:
 
 ```
-[static_files stonelabs]
-path: /home/<user>/printer_data/www-stonelabs
+[static_files mercy]
+path: /home/<user>/printer_data/www-mercy
 ```
 
 Replace `<user>` with your login name. Restart Moonraker:
@@ -86,7 +86,7 @@ sudo systemctl restart moonraker
 Open the UI at:
 
 ```
-http://<host-ip>:7125/server/files/stonelabs/index.html
+http://<host-ip>:7125/server/files/mercy/index.html
 ```
 
 ### 4d. Serve the files standalone (alternative)
@@ -94,7 +94,7 @@ http://<host-ip>:7125/server/files/stonelabs/index.html
 If you would rather serve on a separate port, use any static file server, for example:
 
 ```
-cd ~/printer_data/www-stonelabs
+cd ~/printer_data/www-mercy
 python3 -m http.server 8088
 ```
 
@@ -144,19 +144,19 @@ For a Pi with an attached touchscreen, run a browser full-screen pointed at the 
 
 1. Attach the screen and confirm the URL from section 4c loads in a normal browser first.
 2. In wizard step 3, if the screen is attached to this host, note the display output it uses (HDMI0 or HDMI1).
-3. Install the kiosk service. A first-draft `install.sh` (to be added to `kiosk/`, mirroring the v1 script) will: install Chromium and X, publish `dist/` into the Moonraker static folder, install `/etc/default/stonelabs-ui` with the URL, install a `stonelabs-ui.service` systemd unit, and enable it on `graphical.target`.
+3. Install the kiosk service. A first-draft `install.sh` (to be added to `kiosk/`, mirroring the v1 script) will: install Chromium and X, publish `dist/` into the Moonraker static folder, install `/etc/default/mercy` with the URL, install a `mercy.service` systemd unit, and enable it on `graphical.target`.
 
-Until that script is added, the v1 kiosk unit at `StoneLabs-3D-Printer-UI7-7-26-update/release/stonelabs-ui-v1.9.0/web-ui/kiosk/` is the reference. Change its `KIOSK_URL` to the v2 URL:
+Until that script is added, adapt any standard Klipper kiosk unit (Chromium in kiosk mode pointed at the served URL). Set its `KIOSK_URL` to:
 
 ```
-http://localhost:7125/server/files/stonelabs/index.html
+http://localhost:7125/server/files/mercy/index.html
 ```
 
 Start and check it:
 
 ```
-sudo systemctl start stonelabs-ui
-journalctl -u stonelabs-ui -f
+sudo systemctl start mercy
+journalctl -u mercy -f
 ```
 
 ## 8. Settings: where the wizard choices live afterward
@@ -173,33 +173,33 @@ Socket keeps dropping. The UI reconnects with exponential backoff on its own. If
 
 Webcam not showing. Confirm the stream URL works on its own in a browser tab. Check that the webcam is enabled in Settings and that crowsnest is running. Moonraker lists cameras at `/server/webcams/list`.
 
-Kiosk not launching. Confirm the URL loads in a normal browser on the host first. Then check `journalctl -u stonelabs-ui -f` for the Chromium or X startup error. On Wayland, use cage or weston instead of startx.
+Kiosk not launching. Confirm the URL loads in a normal browser on the host first. Then check `journalctl -u mercy -f` for the Chromium or X startup error. On Wayland, use cage or weston instead of startx.
 
 ## 10. Updating and uninstalling
 
 Update: pull the repo, rebuild, and republish the files.
 
 ```
-cd stonelabs-ui-v2
+cd mercy
 git pull
 npm install
 npm run build
-cp -r dist/* ~/printer_data/www-stonelabs/
+cp -r dist/* ~/printer_data/www-mercy/
 ```
 
 If you run the kiosk, restart it after republishing:
 
 ```
-sudo systemctl restart stonelabs-ui
+sudo systemctl restart mercy
 ```
 
 Uninstall:
 
 ```
-sudo systemctl disable --now stonelabs-ui        # if the kiosk was installed
-sudo rm -f /etc/systemd/system/stonelabs-ui.service /etc/default/stonelabs-ui
+sudo systemctl disable --now mercy        # if the kiosk was installed
+sudo rm -f /etc/systemd/system/mercy.service /etc/default/mercy
 sudo systemctl daemon-reload
-rm -rf ~/printer_data/www-stonelabs
+rm -rf ~/printer_data/www-mercy
 ```
 
-Remove the `[static_files stonelabs]` section from `~/printer_data/config/moonraker.conf` and restart Moonraker. To wipe the saved UI config from a browser, clear the site data for the served origin (the config is stored under the `stonelabs-ui-config` key in localStorage).
+Remove the `[static_files mercy]` section from `~/printer_data/config/moonraker.conf` and restart Moonraker. To wipe the saved UI config from a browser, clear the site data for the served origin (the config is stored under the `mercy-config` key in localStorage).

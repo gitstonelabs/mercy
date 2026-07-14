@@ -3,7 +3,7 @@
 // This is a separate store from the live printer state because it changes rarely
 // and must survive reloads. It is persisted to localStorage here. The handoff
 // (section 2.3) also wants it mirrored to a shared home (Moonraker database or a
-// namespaced stonelabs-ui.json) so a kiosk and a phone agree; that sync is a
+// namespaced mercy.json) so a kiosk and a phone agree; that sync is a
 // TODO, localStorage is the first pass. Pick and document one home before ship.
 //
 // Everything the first-run wizard collects lives here, and the Settings page
@@ -207,7 +207,7 @@ export const useConfig = create<ConfigState>()(
       resetWizard: () => set({ wizardCompleted: false }),
     }),
     {
-      name: 'stonelabs-ui-config',
+      name: 'mercy-config',
       // On rehydrate, push the saved theme onto :root so there is no flash.
       onRehydrateStorage: () => (state) => {
         if (state) applyTheme(state.theme, state.mode);

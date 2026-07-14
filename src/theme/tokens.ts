@@ -1,8 +1,7 @@
-// StoneLabs UI v2 theme tokens.
+// Mercy theme tokens.
 //
-// These are the exact hex values ported from the v1 offline HTML:
-//   C:\...\StoneLabs-3D-Printer-UI7-7-26-update\release\stonelabs-ui-v1.9.0\
-//     web-ui\src\stonelabs-printer-ui.dc.html   (search "THEME PALETTES")
+// These are the exact hex values ported from the v1 offline UI (search
+// "THEME PALETTES" in the v1 source).
 // v1 shipped the tokens as CSS custom properties keyed on [data-theme][data-mode].
 // v2 keeps the same token names and the same six accents (cyan default, crimson,
 // amber, mono, grey, sage), each in dark and light. Do not rename tokens; the

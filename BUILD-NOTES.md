@@ -61,8 +61,8 @@ New in this pass:
   Qidi profiles shows a blocking confirm: MCU recompile+reflash via
   Katapult required, Hi soft-restart regression needs a cold power cycle.
 - OTA groundwork: the build emits release_info.json (project_name
-  stonelabs-printer-ui, version from package.json) for a future
-  [update_manager stonelabs-ui] entry; updating a web-type component from
+  mercy, version from package.json) for a future
+  [update_manager mercy] entry; updating a web-type component from
   the update card shows a "reload to finish updating" affordance.
 
 Verify on the rig: WebRTC against the real go2rtc/camera-streamer endpoint;
@@ -240,7 +240,7 @@ Every route is now real; no TodoBody stubs remain.
 - Settings: profile picker with firmware warnings, connection host +
   auto/live/demo mode with restartBackend(), webcam, interface summary,
   theme + mode, logo picker (validated), dashboard preset reset, export /
-  import stonelabs-ui.json, factory reset (clears persisted config and
+  import mercy.json, factory reset (clears persisted config and
   reloads into the wizard), re-run wizard.
 
 Verify on the rig: thumbnails resolve against your host setting; Monaco
@@ -315,7 +315,7 @@ Settings page; multi-printer; WebRTC camera; local fonts for offline kiosk.
 ## alpha.1: data layer end to end, shell, first three cards
 
 Implements handoff section 9 steps 1 to 4 for the first panels. The approved
-prototype (StoneLabs UI v2.dc.html in the design project) is the visual and
+prototype (Mercy.dc.html in the design project) is the visual and
 behavioral reference.
 
 ### What works now
@@ -368,7 +368,7 @@ behavioral reference.
     npm run dev            # demo simulator, no printer needed
     VITE_MOONRAKER_HOST=http://printer.local:7125 npm run dev   # live rig
 
-Set connectionMode 'live' or 'demo' in localStorage (stonelabs-ui-config) to
+Set connectionMode 'live' or 'demo' in localStorage (mercy-config) to
 pin an adapter; 'auto' is the default.
 
 ### Verify against the live rig

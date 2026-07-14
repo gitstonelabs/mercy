@@ -70,7 +70,7 @@ export function PrintHistory() {
     const blob = new Blob([head + '\n' + lines.join('\n') + '\n'], { type: 'text/csv' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'stonelabs-print-history.csv';
+    a.download = 'mercy-print-history.csv';
     a.click();
     // Revoking on the same tick can hand some browsers an empty file.
     window.setTimeout(() => URL.revokeObjectURL(a.href), 0);

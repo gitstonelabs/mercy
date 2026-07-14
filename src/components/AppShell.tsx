@@ -151,7 +151,7 @@ function TopBar() {
   const [powerOpen, setPowerOpen] = useState(false);
   const [bellOpen, setBellOpen] = useState(false);
   const [printerOpen, setPrinterOpen] = useState(false);
-  const name = getProfile(profileId)?.displayName ?? 'StoneLabs';
+  const name = getProfile(profileId)?.displayName ?? 'Mercy';
   const dot = phase === 'ready' ? 'var(--success)' : phase === 'connecting' ? 'var(--warning)' : 'var(--danger)';
 
   // E-STOP fires immediately: a confirm dialog defeats an emergency stop.

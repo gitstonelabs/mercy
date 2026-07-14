@@ -263,8 +263,8 @@ function UpdateManager() {
     }
     getBackend().machine.updateAction(row.name)
       .then(() => {
-        // A web-client update (e.g. stonelabs-ui itself, once registered with
-        // [update_manager stonelabs-ui]) swaps the served files but not the
+        // A web-client update (e.g. mercy itself, once registered with
+        // [update_manager mercy]) swaps the served files but not the
         // running app; the kiosk must reload to finish. The service-worker
         // precache on the roadmap supersedes this affordance.
         if (row.configuredType === 'web') setNeedsReload(true);
