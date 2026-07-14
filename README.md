@@ -1,4 +1,4 @@
-# Mercy
+# mercy
 
 3D printing at your Mercy. A control UI for Klipper printers that takes the pain out of running them: fast, good-looking, customizable, and built to grow from one printer into a managed print farm.
 
