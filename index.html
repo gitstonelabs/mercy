@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en" data-theme="cyan" data-mode="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>StoneLabs Printer UI</title>
+    <!--
+      data-theme (accent) and data-mode (dark/light) on <html> are the token
+      switches. The defaults here are cyan + dark to match v1. On load, App
+      overwrites both from saved config (src/store config slice). Setting them
+      in the static HTML avoids a light-mode flash before React mounts.
+    -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,190 @@
+/* StoneLabs UI v2 global styles.
+   Tokens come from src/theme/tokens.ts (applyTheme writes them onto :root).
+   These classes carry the component patterns from the approved prototype:
+   ink canvas, hairline cards, control-surface buttons, accent gradients.
+   Fonts: Manrope (UI), JetBrains Mono (numbers), Caveat (accents), bundled
+   locally via @fontsource imports in src/theme/fonts.ts so the offline kiosk
+   never reaches for the internet. */
+
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--tx);
+  font-family: 'Manrope', system-ui, sans-serif;
+}
+
+a { color: var(--accent); }
+a:hover { color: var(--accent2); }
+
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-thumb { background: var(--b2); border-radius: 99px; border: 2px solid var(--bg); }
+::-webkit-scrollbar-track { background: transparent; }
+
+@keyframes slPulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+
+/* ---- text ---- */
+.sl-eyebrow {
+  font: 800 10.5px 'Manrope', system-ui, sans-serif;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--txd);
+}
+.sl-script { font-family: 'Caveat', cursive; font-weight: 700; color: var(--accent); }
+.sl-mono { font-family: 'JetBrains Mono', monospace; }
+
+/* ---- surfaces ---- */
+.sl-card {
+  background: var(--bg2);
+  border: 1px solid var(--b1);
+  border-radius: 14px;
+  min-width: 0;
+}
+.sl-inset {
+  background: var(--inset);
+  border: 1px solid var(--b1);
+  border-radius: 9px;
+}
+
+/* ---- buttons ---- */
+.sl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 34px;
+  padding: 0 13px;
+  border-radius: 10px;
+  border: 1px solid var(--b2);
+  background: var(--control);
+  color: var(--tx2);
+  font: 800 12px 'Manrope', system-ui, sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color .12s, color .12s, box-shadow .12s;
+}
+.sl-btn:hover { border-color: var(--b3); color: var(--tx); }
+.sl-btn:active { transform: scale(.97); box-shadow: inset 0 2px 4px rgba(0,0,0,.4); }
+.sl-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+.sl-btn--accent {
+  border-color: var(--accentdim);
+  background: linear-gradient(180deg, var(--ad1), var(--ad2));
+  color: var(--accent2);
+  box-shadow: 0 0 14px -6px rgba(var(--accent-rgb), .6);
+}
+.sl-btn--accent:hover { background: linear-gradient(180deg, var(--ad1h), var(--ad2h)); border-color: var(--accentdim); color: var(--accent2); }
+
+.sl-btn--danger {
+  border-color: var(--danger-b);
+  background: linear-gradient(180deg, var(--danger-d1), var(--danger-d2));
+  color: var(--danger);
+  letter-spacing: .08em;
+}
+.sl-btn--danger:hover { border-color: var(--danger-b); color: var(--danger); box-shadow: 0 0 0 1px rgba(var(--danger-rgb), .5), 0 0 16px -4px rgba(var(--danger-rgb), .6); }
+
+.sl-btn--ghost { border-color: transparent; background: transparent; color: var(--tx3); }
+
+/* ---- segmented control ---- */
+.sl-seg {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--b2);
+  border-radius: 999px;
+  background: var(--control);
+}
+.sl-seg > button {
+  height: 26px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--txd);
+  font: 700 11px 'Manrope', system-ui, sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.sl-seg > button[data-on='true'] {
+  border-color: var(--accentdim);
+  background: linear-gradient(180deg, var(--ad1), var(--ad2));
+  color: var(--seg-on);
+  font-weight: 800;
+}
+
+/* ---- chips (mono values, jog steps, presets) ---- */
+.sl-chip {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid var(--b2);
+  background: var(--control);
+  color: var(--tx3);
+  font: 700 10.5px 'JetBrains Mono', monospace;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.sl-chip:hover { color: var(--accent2); border-color: var(--accentdim); }
+.sl-chip[data-on='true'] {
+  border-color: var(--accentdim);
+  background: linear-gradient(180deg, var(--ad1), var(--ad2));
+  color: var(--accent2);
+}
+
+/* ---- inputs ---- */
+.sl-input {
+  height: 34px;
+  padding: 0 11px;
+  border-radius: 9px;
+  border: 1px solid var(--b2);
+  background: var(--inset);
+  color: var(--tx);
+  font: 700 12.5px 'JetBrains Mono', monospace;
+  outline: none;
+  min-width: 0;
+}
+.sl-input:focus-visible { border-color: var(--accentdim); box-shadow: 0 0 0 2px rgba(var(--accent-rgb), .25); }
+
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 12px -2px rgba(var(--accent-rgb), .6);
+}
+
+/* ---- range slider ---- */
+input[type='range'].sl-range { accent-color: var(--accent); }
+
+/* ---- layout: rail + mobile tabs ---- */
+.sl-tabs { display: none; }
+
+@media (max-width: 900px) {
+  .sl-rail { display: none !important; }
+  .sl-mod { width: 100% !important; }
+  .sl-tabs {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    height: 60px;
+    flex: none;
+    border-top: 1px solid var(--b1);
+    background: var(--bg2);
+  }
+  .sl-hide-narrow { display: none !important; }
+  .sl-page { padding: 12px !important; }
+  .sl-cgrid { display: flex !important; flex-direction: column !important; }
+  .sl-cgrid > * { min-height: 240px; }
+}
+
+/* ---- touchscreen sizing ----
+   The app root carries data-touch when config.ui.kind includes a touchscreen;
+   hit targets grow to the 44px floor from the handoff's mobile spec. Controls
+   set inline height: per instance, so these use !important min-height (a
+   stylesheet !important beats a non-important inline style). */
+[data-touch] .sl-btn { height: auto !important; min-height: 44px !important; padding-top: 2px !important; padding-bottom: 2px !important; font-size: 13px; }
+[data-touch] .sl-chip { height: auto !important; min-height: 40px !important; font-size: 11.5px; }
+[data-touch] .sl-seg > button { height: 36px !important; font-size: 12px; }
+[data-touch] .sl-input { height: 44px !important; font-size: 13.5px; }
+[data-touch] input[type='range'].sl-range { height: 28px; }
